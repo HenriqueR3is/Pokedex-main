@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= pokemon.name %> - Detalhes</title>
+  </head>
+  <body>
+    <h1><%= pokemon.name %> - Detalhes</h1>
+    <p>ID: <%= pokemon.id %></p>
+    <p>Habilidades:</p>
+    <ul>
+      <% pokemon.abilities.forEach(ability => { %>
+      <li><%= ability.ability.name %></li>
+      <% }) %>
+    </ul>
+    <p>Moves:</p>
+    <ul>
+      <% pokemon.moves.forEach(move => { %>
+      <li><%= move.move.name %></li>
+      <% }) %>
+    </ul>
+    <p>Status:</p>
+    <ul>
+      <% pokemon.stats.forEach(stat => { %>
+      <li><%= stat.stat.name %>: <%= stat.base_stat %></li>
+      <% }) %>
+    </ul>
+  </body>
+</html>
