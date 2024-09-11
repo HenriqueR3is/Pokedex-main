@@ -31,27 +31,6 @@ app.get("/pokemon/:id", function (request: Request, response: Response) {
     });
 });
 
-app.get("/pokemon", function (request: Request, response: Response) {
-  const { name } = request.query;
-  const query = typeof name === "string" ? name.toLowerCase() : "";
-
-  fetch(`https://pokeapi.co/api/v2/pokemon/${query}`)
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        throw new Error("Pokémon não encontrado");
-      }
-    })
-    .then((pokemon) => {
-      response.render("pokemon", { pokemon });
-    })
-    .catch((error) => {
-      console.error("Erro ao buscar Pokémon:", error);
-      response.status(404).send("Pokémon não encontrado");
-    });
-});
-
 app.listen(3000, function () {
   console.log("Server is running");
 });
