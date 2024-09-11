@@ -88,12 +88,42 @@
       h1 {
         text-transform: capitalize;
       }
+
+      .pokemon-image {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto 20px auto;
+      }
+
+      .progress {
+        height: 1.5rem;
+        background-color: #495057;
+      }
+
+      .progress-bar {
+        background-color: #dc3545;
+      }
+
+      .status-list {
+        margin-bottom: 2rem;
+      }
+
+      .status-list li {
+        margin-bottom: 10px;
+      }
     </style>
     <title><%= pokemon.name %> - Detalhes</title>
   </head>
   <body>
     <div class="container py-5">
       <h1 class="text-center mb-4"><%= pokemon.name %> - Detalhes</h1>
+
+      <img
+        class="pokemon-image"
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<%= pokemon.id %>.png"
+        alt="<%= pokemon.name %>"
+      />
 
       <div class="card mb-4">
         <div class="card-header">Informações do Pokémon</div>
@@ -116,7 +146,21 @@
               <h5 class="card-title">Status:</h5>
               <ul class="status-list">
                 <% pokemon.stats.forEach(stat => { %>
-                <li><%= stat.stat.name %>: <%= stat.base_stat %></li>
+                <li>
+                  <%= stat.stat.name %>:
+                  <div class="progress">
+                    <div
+                      class="progress-bar"
+                      role="progressbar"
+                      style="width: <%= stat.base_stat %>%"
+                      aria-valuenow="<%= stat.base_stat %>"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    >
+                      <%= stat.base_stat %>
+                    </div>
+                  </div>
+                </li>
                 <% }) %>
               </ul>
             </div>
@@ -126,8 +170,8 @@
             <h5 class="card-title">Movimentos:</h5>
             <div class="moves-list">
               <ul>
-                <% pokemon.moves .map(move => move.move.name) .sort()
-                .forEach(move => { %>
+                <% pokemon.moves .map((move) => move.move.name) .sort()
+                .forEach((move) => { %>
                 <li><%= move %></li>
                 <% }) %>
               </ul>

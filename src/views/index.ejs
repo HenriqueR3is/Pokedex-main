@@ -19,12 +19,17 @@
         font-family: "Handjet", sans-serif;
       }
 
-      body h1 {
+      body {
+        background-color: #1c1c1c;
+        color: #e0e0e0;
+      }
+
+      h1 {
         font-size: 72px;
         font-weight: 700;
       }
 
-      body h2 {
+      h2 {
         font-size: 42px;
         font-weight: 400;
       }
@@ -35,7 +40,7 @@
 
       .pokemon-card:hover {
         transform: scale(1.05);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
       }
 
       .card-body img {
@@ -52,8 +57,30 @@
         margin-left: 15px;
       }
 
-      #pokemonList {
-        margin-bottom: 100px;
+      .card {
+        background-color: #2e2e2e;
+        color: #e0e0e0;
+      }
+
+      .btn-danger {
+        background-color: #b30000;
+        border-color: #b30000;
+      }
+
+      .btn-danger:hover {
+        background-color: #d90000;
+        border-color: #d90000;
+      }
+
+      .form-control {
+        background-color: #333333;
+        color: #e0e0e0;
+        border: 1px solid #555555;
+      }
+
+      .form-control:focus {
+        background-color: #444444;
+        border-color: #777777;
       }
 
       .container {
@@ -69,9 +96,13 @@
           font-size: 30px;
         }
       }
+
+      .pokemon-name {
+        text-transform: capitalize;
+      }
     </style>
   </head>
-  <body class="bg-dark text-light container py-5">
+  <body class="container py-5">
     <h1 class="text-center mb-4">Pokédex</h1>
 
     <form
@@ -83,8 +114,8 @@
         id="searchInput"
         type="text"
         name="name"
-        class="form-control w-50 me-2 bg-dark text-light"
-        placeholder="Digite o nome ou ID do Pokémon"
+        class="form-control w-50 me-2"
+        placeholder="Digite o nome do Pokémon"
         oninput="filterPokemons()"
         required
       />
@@ -96,7 +127,7 @@
       <% results.forEach(pokemon => { const pokemonId =
       pokemon.url.split('/').filter(Boolean).pop(); %>
       <div class="col-md-4 mb-3 pokemon-card">
-        <div class="card bg-secondary text-light">
+        <div class="card">
           <div class="card-body">
             <img
               src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= pokemonId %>.png"
